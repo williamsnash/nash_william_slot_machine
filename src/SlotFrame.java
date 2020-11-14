@@ -24,13 +24,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * This is program set the frame up for the slot machine 
+ * It include the top bar options and sets the look of the frame
+ * @author William Nash
+ *
+ */
 @SuppressWarnings({ "unused", "serial" })
 public class SlotFrame extends JFrame
 {
-	//private SlotsDrawing pan;
+	private SlotsDrawing drawSlots;
+	/**
+	 * setupMenu sets up the top bar
+	 * This allows users to save, load restart and exit the game
+	 * It also includes a help tab if the user gets suck
+	 */
 	public void setupMenu()
 	{
-		SlotsDrawing pan = new SlotsDrawing();
 		Tile tileInfo = new Tile();
 		JMenuBar slotBar = new JMenuBar();
 		JMenu slotMenu = new JMenu("File");
@@ -41,7 +51,7 @@ public class SlotFrame extends JFrame
 				SlotsWriter tileWrite = new SlotsWriter();
 				if(jfc.showSaveDialog(null)== JFileChooser.APPROVE_OPTION)
 				{
-					if(tileWrite.write(jfc.getSelectedFile(), pan.getTiles()))
+					if(tileWrite.write(jfc.getSelectedFile(), drawSlots.getTiles()))
 					{
 						JOptionPane.showMessageDialog(null, "Wrote Tiles to file");
 					}
@@ -67,7 +77,7 @@ public class SlotFrame extends JFrame
 					}
 					else
 					{
-						pan.setTiles(TileRead);
+						drawSlots.setTiles(TileRead);
 						repaint();
 					}
 				}
@@ -78,7 +88,7 @@ public class SlotFrame extends JFrame
 		JMenuItem menuRestart = new JMenuItem("Restart");
 		menuRestart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pan.RandomizerTile();
+				drawSlots.RandomizerTile();
 				repaint();
 			}
 		});
@@ -104,12 +114,31 @@ public class SlotFrame extends JFrame
 		slotBar.add(slotHelp);
 		setJMenuBar(slotBar);
 	}
+	/**
+	 * This is the non-default constructor
+	 * @param title It is brought in from the VegasSlots class
+	 * @param left It is brought in from the VegasSlots class
+	 * @param top It is brought in from the VegasSlots class
+	 * @param width It is brought in from the VegasSlots class
+	 * @param height It is brought in from the VegasSlots class
+	 * @param closeOp It is brought in from the VegasSlots class
+	 */
 	public SlotFrame(String title, int left, int top, int width, int height, int closeOp)//non-default constructor, takes in settings
 	{
 		setLook(title,left,top,width,height);
 		setDefaultCloseOperation(closeOp);
 	}
 	
+	/**
+	 * The setlook function adds all the visuals
+	 * It sets the look of the frame and add the containers
+	 * It adds the buttons on the bottom to allow the user to bet away their life savings
+	 * @param title It is brought in from the VegasSlots class
+	 * @param left It is brought in from the VegasSlots class
+	 * @param top It is brought in from the VegasSlots class
+	 * @param width It is brought in from the VegasSlots class
+	 * @param height It is brought in from the VegasSlots class
+	 */
 	public void setLook(String title, int left, int top, int width, int height) {
         setTitle(title);
         setBounds(left,top,width,height);
@@ -117,7 +146,7 @@ public class SlotFrame extends JFrame
         
         c.setLayout(new BorderLayout());
         
-        SlotsDrawing drawSlots = new SlotsDrawing();
+        drawSlots = new SlotsDrawing();
         c.add(drawSlots, BorderLayout.CENTER);
         
         JPanel panelSouth = new JPanel();
@@ -128,6 +157,7 @@ public class SlotFrame extends JFrame
         JButton btnMax = new JButton("Max");
         btnMax.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	drawSlots.RandomizerTile();
                 repaint();
             }
         });
@@ -137,6 +167,7 @@ public class SlotFrame extends JFrame
         JButton btnMid = new JButton("Mid");
         btnMid.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	drawSlots.RandomizerTile();
                 repaint();
             }
         });
@@ -146,6 +177,7 @@ public class SlotFrame extends JFrame
         JButton btnMin = new JButton("Min");
         btnMin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	drawSlots.RandomizerTile();
                 repaint();
             }
         });

@@ -6,6 +6,14 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * SlotsReader is the code needed to read from .txt, .bin, and .xml files
+ * It starts at the read function where the string is turned into a file
+ * It is then passed to another function to determine the file extension.
+ * Based on the extension it is passed to either the readFromText, readFromBin or the readFromXml
+ * @author William Nash
+ *
+ */
 public class SlotsReader
 {
 	public ArrayList<Tile> readFromText(String fname)

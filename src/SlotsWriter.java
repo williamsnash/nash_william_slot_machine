@@ -10,6 +10,14 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * SlotsWriter is the code needed to write to .txt, .bin, and .xml files
+ * It starts at the write function where the string is turned into a file
+ * It is then passed to another function to determine the file extension.
+ * Based on the extension it is passed to either the writeToText, writeToBin or the writeToXml
+ * @author William Nash
+ *
+ */
 @SuppressWarnings("unused")
 public class SlotsWriter
 {

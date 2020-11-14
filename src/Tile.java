@@ -1,7 +1,12 @@
 import java.io.Serializable;
 import java.util.Random;
 
-
+/**
+ * This class creates a new variable called Tile. 
+ * It holds two integer called color and shape
+ * @author William Nash
+ *
+ */
 public class Tile implements Serializable
 {
 	private int color;
@@ -72,6 +77,11 @@ public class Tile implements Serializable
 		return String.format("%d %d",color,shape);
 	}
 	
+	/**
+	 * Randomly picks two numbers
+	 * @param tile1 The tile to have the numbers random selected
+	 * @return The randomized Tile
+	 */
 	public Tile tileRandom(Tile tile1)
 	{
 		Random rand = new Random();
