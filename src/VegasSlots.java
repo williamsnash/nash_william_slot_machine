@@ -1,43 +1,39 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.awt.Graphics;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-@SuppressWarnings("unused")
+
+
+
+
+public class VegasSlots
+{
+	public static void main(String[] args)
+	{
+		SlotFrame frm1 = new SlotFrame("Vegas Baby Vegas Slot Machine",100,100,800,380,JFrame.EXIT_ON_CLOSE);
+		frm1.setVisible(true);
+
+	}
+}
+/*
+ * Old And crappy code
+ * Saving because don't want to delete
 class TileData
 {
 
-	private String tileLeftColor;
-	private String tileLeftShape;
-	private String tileLeftMiddleColor;
-	private String tileLeftMiddleShape;
-	private String tileRightColor;
-	private String tileRightShape;
-	private String tileRightMiddleColor;
-	private String tileRightMiddleShape;
+	private int tileLeftColor;
+	private int tileLeftShape;
+	private int tileLeftMiddleColor;
+	private int tileLeftMiddleShape;
+	private int tileRightColor;
+	private int tileRightShape;
+	private int tileRightMiddleColor;
+	private int tileRightMiddleShape;
+	private ArrayList<Integer> slotData;
 	
 	public TileData()
 	{
-		this("red", "square", "red", "square","red", "square", "red", "square");
+		this(0, 0, 0, 0, 0, 0, 0, 0);
 	}
-	public TileData(String LeftColor, String LeftShape, String LeftMiddleColor, String LeftMiddleShape, String RightColor, String RightShape, String RightMiddleColor, String RightMiddleShape)
+	public TileData(int LeftColor, int LeftShape, int LeftMiddleColor, int LeftMiddleShape, int RightColor, int RightShape, int RightMiddleColor, int RightMiddleShape)
 	{
 		setTileLeftColor(LeftColor);
 		setTileLeftShape(LeftShape);
@@ -53,143 +49,175 @@ class TileData
 	}
 	//
 	//Left
-	public void setTileLeftColor(String LeftColor)
+	public void setTileLeftColor(int LeftColor)
 	{
 		this.tileLeftColor = LeftColor;
 	}
-	public String getTileLeftColor()
+	public int getTileLeftColor()
 	{
 		return tileLeftColor;
 	}
-	public void setTileLeftShape(String leftShape)
+	public void setTileLeftShape(int leftShape)
 	{
 		this.tileLeftShape = leftShape;
 	}
-	public String getTileLeftShape()
+	public int getTileLeftShape()
 	{
 		return tileLeftShape;
 	}
 	//
 	//Left Middle
-	public void setTileLeftMiddleColor(String LeftMiddleColor)
+	public void setTileLeftMiddleColor(int LeftMiddleColor)
 	{
 		this.tileLeftMiddleColor = LeftMiddleColor;
 	}
-	public String getTileLeftMiddleColor()
+	public int getTileLeftMiddleColor()
 	{
 		return tileLeftMiddleColor;
 	}
-	public void setTileLeftMiddleShape(String leftMiddleShape)
+	public void setTileLeftMiddleShape(int leftMiddleShape)
 	{
 		this.tileLeftMiddleShape = leftMiddleShape;
 	}
-	public String getTileLeftMiddleShape()
+	public int getTileLeftMiddleShape()
 	{
 		return tileLeftMiddleShape;
 	}
 	//
-	//Rigth
-	public void setTileRightColor(String rightColor)
+	//Right
+	public void setTileRightColor(int rightColor)
 	{
 		this.tileRightColor = rightColor;
 	}
-	public String getTileRightColor()
+	public int getTileRightColor()
 	{
 		return tileRightColor;
 	}
-	public void setTileRightShape(String rightShape)
+	public void setTileRightShape(int rightShape)
 	{
 		this.tileRightShape = rightShape;
 	}
-	public String getTileRightShape()
+	public int getTileRightShape()
 	{
 		return tileRightShape;
 	}
 	//
 	//Right Middle
-	public void setTileRightMiddleColor(String rightMiddleColor)
+	public void setTileRightMiddleColor(int rightMiddleColor)
 	{
 		this.tileRightMiddleColor = rightMiddleColor;
 	}
-	public String getTileRightMiddleColor()
+	public int getTileRightMiddleColor()
 	{
 		return tileRightMiddleColor;
 	}
-	public void setTileRightMiddleShape(String rightMiddleShape)
+	public void setTileRightMiddleShape(int rightMiddleShape)
 	{
 		this.tileRightMiddleShape = rightMiddleShape;
 	}
-	public String getTileRightMiddleShape()
+	public int getTileRightMiddleShape()
 	{
 		return tileRightMiddleShape;
 	}
 	//
 	//
-}
-
-@SuppressWarnings("serial" )
-class SlotsDrawing extends JPanel
-{	
-	@Override
-	public void paintComponent(Graphics g)
+	public void setRandomly(Random rand)
 	{
-		TileData tileInfo = new TileData();
-		super.paintComponent(g);
-		g.setColor(Color.getColor(tileInfo.getTileLeftColor().toUpperCase(), Color.RED)); //Test
-		g.fillRect(30,100,125,125);
-
-		g.setColor(Color.getColor(tileInfo.getTileLeftMiddleColor().toUpperCase(), Color.RED)); //Test
-		g.fillRect(230,100,125,125);
+		setTileLeftColor(rand.nextInt(5));
+		setTileLeftMiddleColor(rand.nextInt(5));
+		setTileRightMiddleColor(rand.nextInt(5));
+		setTileRightColor(rand.nextInt(5));
 		
-		g.setColor(Color.getColor(tileInfo.getTileRightMiddleColor().toUpperCase(), Color.RED)); //Test
-		g.fillRect(430,100,125,125);
+		setTileLeftShape(rand.nextInt(2));
+		setTileLeftMiddleShape(rand.nextInt(2));
+		setTileRightMiddleShape(rand.nextInt(2));
+		setTileRightShape(rand.nextInt(2));
+	}
+	
+	public void setArrayList()
+	{
+		slotData.add(getTileLeftColor());
+		slotData.add(getTileLeftShape());
 		
-		g.setColor(Color.getColor(tileInfo.getTileRightColor().toUpperCase(), Color.RED)); //Test
-		g.fillRect(630,100,125,125);
+		slotData.add(getTileLeftMiddleColor());
+		slotData.add(getTileLeftMiddleShape());
+		
+		slotData.add(getTileRightMiddleColor());
+		slotData.add(getTileRightMiddleShape());
+		
+		slotData.add(getTileRightColor());
+		slotData.add(getTileRightShape());
+	}
+	public ArrayList<Integer> getArrayList()
+	{
+		return slotData;
 	}
 }
 
-
-class TileWriter
+class TileRandomizer
 {
-	public void write()
-	{
-		TileData tileInfo = new TileData();
-		try
-		{
-			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(new File("TileData.txt"))));
-			pw.println(tileInfo.getTileLeftColor() +"\t"+ tileInfo.getTileLeftShape());
-			pw.println(tileInfo.getTileLeftMiddleColor() +"\t"+ tileInfo.getTileLeftMiddleShape());
-			pw.println(tileInfo.getTileRightColor() +"\t"+ tileInfo.getTileRightShape());
-			pw.println(tileInfo.getTileRightMiddleColor() + "\t"+ tileInfo.getTileRightMiddleShape());
-			pw.close();
-		}catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, "There has been an error");
-		}
-	}
 }
+class TilePanel
+{
+	//Allows user to click and randomize tiles
+}
+
 @SuppressWarnings("serial")
 class SlotsFrame extends JFrame
 {
+	//private SlotsWriter tileWrite;
 	public void setupMenu()
 	{
+		TileData tileInfo = new TileData();
 		JMenuBar slotBar = new JMenuBar();
 		JMenu slotMenu = new JMenu("File");
 		JMenuItem menuSave = new JMenuItem("Save");
 		menuSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TileWriter tilewrite = new TileWriter();
-				tilewrite.write();
+				JFileChooser jfc = new JFileChooser();
+				SlotsWriter tileWrite = new SlotsWriter();
+				if(jfc.showSaveDialog(null)== JFileChooser.APPROVE_OPTION)
+				{
+					if(tileWrite.write(jfc.getSelectedFile(), tileInfo.getArrayList()))
+					{
+						JOptionPane.showMessageDialog(null, "Wrote Tiles to File.");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Could not write tiles to File.");
+					}
+				}
+			}
+		});
+		JMenuItem menuLoad = new JMenuItem("Load");
+		menuSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		JMenuItem menuRestart = new JMenuItem("Restart");
+		menuRestart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		JMenuItem menuExit = new JMenuItem("Exit");
+		menuExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
 			}
 		});
 		slotMenu.add(menuSave);
+		slotMenu.add(menuLoad);
+		slotMenu.add(menuRestart);
+		slotMenu.add(menuExit);
 		slotBar.add(slotMenu);
 		
 		JMenu slotHelp = new JMenu("Help");
 		JMenuItem helpAbout = new JMenuItem("About");
 		helpAbout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Slot Machine Program made by Will Nash");
+				JOptionPane.showMessageDialog(null, "Slot Machine Program made by Will Nash\n https://github.com/williamsnash/nash_william_slot_machine");
 			}
 		});
 		slotHelp.add(helpAbout);
@@ -216,7 +244,7 @@ class SlotsFrame extends JFrame
         JButton btnMax = new JButton("Max");
         btnMax.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //repaint();
+                repaint();
             }
         });
         panelSouth.add(btnMax);
@@ -225,7 +253,7 @@ class SlotsFrame extends JFrame
         JButton btnMid = new JButton("Mid");
         btnMid.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //repaint();
+                repaint();
             }
         });
         panelSouth.add(btnMid);
@@ -234,7 +262,7 @@ class SlotsFrame extends JFrame
         JButton btnMin = new JButton("Min");
         btnMin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //repaint();
+                repaint();
             }
         });
         panelSouth.add(btnMin);
@@ -249,15 +277,5 @@ class SlotsFrame extends JFrame
         
 	}
 }
+*/
 
-public class VegasSlots
-{
-
-	public static void main(String[] args)
-	{
-		SlotsFrame frm1 = new SlotsFrame("Vegas Baby Vegas Slot Machine",100,100,800,380,JFrame.EXIT_ON_CLOSE);
-		frm1.setVisible(true);
-
-	}
-
-}
