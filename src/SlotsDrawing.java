@@ -2,6 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
@@ -12,9 +15,10 @@ import javax.swing.JPanel;
  *
  */
 @SuppressWarnings("serial" )
-class SlotsDrawing extends JPanel
+class SlotsDrawing extends JPanel implements MouseListener, MouseMotionListener
 {
 	private ArrayList<Tile> tiles;
+	private String mouseStatus;
 	
 	/**
 	 * This function allows other class to edit the private tiles arrayList
@@ -39,12 +43,14 @@ class SlotsDrawing extends JPanel
 	 */
 	public SlotsDrawing()
 	{
+		addMouseListener(this);//This breaks everything!!!!
+		//addMouseMotionListener(this);
 		tiles = new ArrayList<Tile>();
 		Tile tile1 = new Tile(0,0);
-		tiles.add(tile1.tileRandom(tile1));
-		tiles.add(tile1.tileRandom(tile1));
-		tiles.add(tile1.tileRandom(tile1));
-		tiles.add(tile1.tileRandom(tile1));
+		tiles.add(tile1.tileRandom());
+		tiles.add(tile1.tileRandom());
+		tiles.add(tile1.tileRandom());
+		tiles.add(tile1.tileRandom());
 	}
 	/**
 	 * This is a function that other classes can call to randomize the tiles at any point
@@ -53,11 +59,67 @@ class SlotsDrawing extends JPanel
 	public void RandomizerTile()
 	{
 		Tile tile1 = new Tile(0,0);
-		tiles.set(0, tile1.tileRandom(tile1));
-		tiles.set(1, tile1.tileRandom(tile1));
-		tiles.set(2, tile1.tileRandom(tile1));
-		tiles.set(3, tile1.tileRandom(tile1));
+		tiles.set(0, tile1.tileRandom());
+		tiles.set(1, tile1.tileRandom());
+		tiles.set(2, tile1.tileRandom());
+		tiles.set(3, tile1.tileRandom());
 		repaint();
+	}
+	
+	/**
+	 * This will change the correct tile based on where the user clicks
+	 * The math was done knowing that the the shapes are all the same size, the just comparing the value to see which to randomize
+	 */
+	public void clickChange(int x, int y)
+	{
+		Tile tile1 = new Tile(0,0);
+		if(x > 30 & x < 155)
+		{
+			if(y > 100 & y < 225)
+			{
+				//Randomize first Tile
+				tiles.set(0, tile1.tileRandom());
+			}
+		}
+		if(x > 230 & x < 355)
+		{
+			if(y > 100 & y < 225)
+			{
+				//Randomize second Tile
+				tiles.set(1, tile1.tileRandom());
+			}
+		}
+		if(x > 430 & x < 555)
+		{
+			if(y > 100 & y < 225)
+			{
+				//Randomize third Tile
+				tiles.set(2, tile1.tileRandom());
+			}
+		}
+		if(x > 630 & x < 755)
+		{
+			if(y > 100 & y < 225)
+			{
+				//Randomize fourth tile
+				tiles.set(3, tile1.tileRandom());
+			}
+		}
+		/*
+		 * Clickable areas for Tiles
+		 * First Tile
+		 * 		X = [30-155]
+		 * 		Y = [100-225]
+		 * Second Tile
+		 * 		X = [230-355]
+		 * 		Y = [100-225]
+		 * Third Tile
+		 * 		X = [430-555]
+		 * 		Y = [100-225]
+		 * Fourth Tile
+		 * 		X = [630-755]
+		 * 		Y = [100-225]
+		 */
 	}
 	
 	/**
@@ -129,5 +191,47 @@ class SlotsDrawing extends JPanel
 			}
 			x = x+200;
 		}
+	}
+	public String getMouseStatus() {
+		return mouseStatus;
+	}
+	public void setMouseStatus(String ms) {
+		mouseStatus = ms;
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		mouseStatus = "Mouse entered the panel.";
+		repaint();
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		mouseStatus = "Mouse exited the panel.";
+		repaint();
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		mouseStatus = String.format("mouse clicked at (%d, %d)", e.getX(),e.getY());
+		clickChange(e.getX(),e.getY());
+		repaint();
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		mouseStatus = String.format("mouse pressed at (%d, %d)", e.getX(),e.getY());
+		repaint();
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		mouseStatus = String.format("mouse released at (%d, %d)", e.getX(),e.getY());
+		repaint();
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		mouseStatus = "Mouse entered the panel.";
+		repaint();
+	}
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		mouseStatus = "Mouse entered the panel.";
+		repaint();
 	}
 }

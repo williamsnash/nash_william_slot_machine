@@ -82,7 +82,7 @@ public class Tile implements Serializable
 	 * @param tile1 The tile to have the numbers random selected
 	 * @return The randomized Tile
 	 */
-	public Tile tileRandom(Tile tile1)
+	public Tile tileRandom()
 	{
 		Random rand = new Random();
 		int colorRand = rand.nextInt(5);
