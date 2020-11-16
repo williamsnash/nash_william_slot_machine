@@ -130,6 +130,7 @@ class SlotsDrawing extends JPanel implements MouseListener, MouseMotionListener
 	@Override
 	public void paintComponent(Graphics g)
 	{
+		super.paintComponet(g);// didnt have this added 11/16/20
 		int x = 30;
 		for(Tile tile: tiles)
 		{
